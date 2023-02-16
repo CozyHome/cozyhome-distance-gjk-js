@@ -76,3 +76,6 @@ const CONVEX_POLYGON=(pts)=>{
 ```
 ## A Semi-Indepth Explanation of the GJK:
 I wrote an article on my CIMS page documenting the GJK's internal state. [Check it out!](https://cs.nyu.edu/~djc624/hobby/dgjk/index.html)
+
+## Distance-GJK in Three Dimensions:
+I wrote an implementation of the DGJK for usage in the Unity engine in one of my side projects. [Click here if you're interested in checking it out!](https://github.com/CozyHome/team_platformer--2-week-project/blob/main/WinterPlatformer/Assets/scripts/DistanceGJK.cs)
