@@ -5,7 +5,7 @@ Using this simplex, it is trivial to construct a nearest pair of vertices via ba
 
 ## Example #1: Executing Distance-GJK
 ```js
-// Example: here is how you would typically go about executing the DGJK:
+// Here is how you would typically go about executing the DGJK:
 // run DGJK by passing the two point sets in. You can (optionally) pass in a prior simplex
 // from a previous frame to converge quicker for this iteration. Check dgjk.js for more details.
 const query = DGJK(A,B);
