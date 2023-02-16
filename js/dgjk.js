@@ -28,6 +28,8 @@ const DGJK=(sa,sb,splx=null,eps=0.00001,bias=1)=> {
 // updated! In place modifications will preserve this attachment.
 		splx.rebind();
 	}
+	const pts_a = sa.pts();   // point set array for A
+	const pts_b = sb.pts();	  // point set array for B
 	const m_a = sa.l2w();     // l2w matrix for A
 	const m_b = sb.l2w(); 	  // l2w matrix for B 
 	const mi_a = sa.l2w_iv(); // w2l matrix for A
@@ -45,8 +47,8 @@ const DGJK=(sa,sb,splx=null,eps=0.00001,bias=1)=> {
 	do {
 // flip next vertex to maximize in opposite direction
 		d._x = -nv._x; d._y = -nv._y;
-		const a = FAST_SUPPORT(d, sa, m_a, mi_a);
-		const b = FAST_SUPPORT(nv, sb, m_b, mi_b);
+		const a = FAST_SUPPORT(d,  pts_a, m_a, mi_a); // maximize v along A
+		const b = FAST_SUPPORT(nv, pts_b, m_b, mi_b); // minimize v along B
 		const w = new MinkowskiVertex2D(a,b);
 // floating point heuristic from the help of Gino Van's analysis
 		const v1 = nv._x*nv._x + nv._y*nv._y;
@@ -56,7 +58,7 @@ const DGJK=(sa,sb,splx=null,eps=0.00001,bias=1)=> {
 			splx.push(w);
 			MUTATE_SIMPLEX(splx,nv);
 		}
-	} while(i++ < bias*(sa.hull.length + sb.hull.length) && splx.dim() < 3);
+	} while(i++ < bias*(pts_a.length + pts_b.length) && splx.dim() < 3);
 	return { splx, nv };
 }
 // designed to run on the finishing simplex of the DGJK. Computes the
