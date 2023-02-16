@@ -6,7 +6,9 @@ This repository houses my implementation of the Gilbert Johnson Keerthi algorith
 <br>  
 <br>  
 
-Using this simplex, it is trivial to construct a nearest pair of vertices via methods like convex decomposition and barycentric coordinates. Although this pair is not necessarily continuous under rotational transformations, minimized distance is preserved. I've designed this algorithm to return as much information as possible to ensure ease of usability. As well as this, I am working on exploiting frame coherency by reinserting a simplex from a prior iteration. This isn't very difficult to set up but requires a dependency on the point sets being passed in, so I am hesitant to add it.
+Using this simplex, it is trivial to construct a nearest pair of vertices via methods like convex decomposition and barycentric coordinates. Although this pair is not necessarily continuous under rotational transformations, minimized distance is preserved. I've designed this algorithm to return as much information as possible to ensure ease of usability.
+<br>  
+<br>  As well as this, I am working on exploiting frame coherency by reinserting a simplex from a prior iteration. This isn't very difficult to set up but requires a dependency on the point sets being passed in, so I am hesitant to add it.
 
 ## Example #1: Executing Distance-GJK
 ```js
