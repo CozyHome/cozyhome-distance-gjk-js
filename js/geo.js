@@ -1,3 +1,9 @@
+// CREDITS: Daniel J. Cucuzza
+// DATE: February 16th, 2023
+// You can contact me at gaunletgames@gmail.com if you have
+// any questions about the implementation or if you notice
+// any errors.
+
 // GEOMETRIC PRIMITIVES: {
 // 		class Vertex2D 	 := DCEL node wrapper for polygonal/edge structures in R^2.
 // 		class MinkowskiVertex2D := a three R^2 tuple containing, { A, B, A - B } for use in DGJK(...)

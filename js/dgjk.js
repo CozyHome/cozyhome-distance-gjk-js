@@ -1,3 +1,9 @@
+// CREDITS: Daniel J. Cucuzza
+// DATE: February 16th, 2023
+// You can contact me at gaunletgames@gmail.com if you have
+// any questions about the implementation or if you notice
+// any errors.
+
 // input: two convex sets in the form of point clouds
 // (requirements of input sets):
 // 1. l2w() is a function returning the local to world matrix 
