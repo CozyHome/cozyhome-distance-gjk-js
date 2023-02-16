@@ -265,16 +265,15 @@ const ORIENT_2D=(a,b,c,s=1)=> {
 // time operation if correctly implemented. As of now, we
 // naively search the whole set for its maximum.
 const FAST_SUPPORT=(v,set,mat,inv)=> {
-	const hull = set.hull;
-	let mv = hull[0];
+	let mv = set[0];
 	let max = Number.NEGATIVE_INFINITY;
 // invert direction w.r.t coordinate frame
 	tv = mTransform(inv, [v._x,v._y,0]);
-	for(let i=0;i<hull.length;i++) {
-		const dot = hull[i]._x*tv[0] + hull[i]._y*tv[1];
+	for(let i=0;i<set.length;i++) {
+		const dot = set[i]._x*tv[0] + set[i]._y*tv[1];
 		if(dot >= max) {
 			max = dot;
-			mv = hull[i];
+			mv = set[i];
 		}
 	}
 	mp = mTransform(mat, [mv._x, mv._y, 1]);
