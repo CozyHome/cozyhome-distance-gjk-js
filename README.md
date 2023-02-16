@@ -13,7 +13,7 @@ As well as this, I am working on exploiting frame coherency by reinserting a sim
 ## Example #1: Executing Distance-GJK
 ```js
 // Here is how you would typically go about executing the DGJK:
-// run DGJK by passing the two point sets in. You can (optionally) pass in a prior simplex
+// run DGJK by passing the two point sets in. Eventually. you'll be able to pass in a prior simplex
 // from a previous frame to converge quicker for this iteration. Check dgjk.js for more details.
 const query = DGJK(A,B);
 // the final simplex after termination. This will be used with 'nv' to
