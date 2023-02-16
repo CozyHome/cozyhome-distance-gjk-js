@@ -58,8 +58,8 @@ const CONVEX_POLYGON=(pts)=>{
 // l2w() and l2w_iv() are REQUIRED for DGJK to function. These must
 // be part of your input polygons in order for DGJK to work!
 	gon.l2w =()=> { return gon.mat.get(); }				// local to world matrix accessor
-	gon.l2w_iv=()=> { return mInverse(gon.l2w()); }		// world to local matrix accessor
-	gon.pts =()=> { return gon.hull; }					// point set accessor
+	gon.l2w_iv=()=> { return mInverse(gon.l2w()); }	            // world to local matrix accessor
+	gon.pts =()=> { return gon.hull; }				// point set accessor
 // helper method for center calculation (not necessarily required, just makes origins easier to get)
 	gon.origin=()=> {
 		const m = gon.l2w();
