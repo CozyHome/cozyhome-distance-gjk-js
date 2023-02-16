@@ -1,4 +1,4 @@
-# cozyhome-distance-gjk-js
+# Distance GJK in Vanilla Javascript
 <p align="center">
   <img src="img/gjk.gif" alt="DGJK Gif"/>
 </p>
