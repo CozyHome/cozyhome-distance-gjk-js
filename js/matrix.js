@@ -93,11 +93,6 @@ const Matrix3x3 = function() {
 	this.translate = (x,y) => this.set(mMultiply(m(), mTranslate(x,y)));
 	this.scale     = (x,y) => this.set(mMultiply(m(), mScale(x,y)));
 	this.rotz      = theta   => this.set(mMultiply(m(), mRot(theta)));
-	this.getcol	   = (col)	 => {
-		col *= 3;
-		const m = this.get();
-		return [m[col],m[col+1],m[col+2]];
-	}
 	this.push = () => {
 		stack[top+1] = stack[top].slice();
 		top++;
