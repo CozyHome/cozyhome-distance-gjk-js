@@ -81,3 +81,6 @@ I wrote an article on my CIMS page documenting the GJK's internal state. [Check 
 
 ## Distance-GJK in Three Dimensions:
 I wrote an implementation of the DGJK for usage in the Unity engine in one of my side projects. [Click here if you're interested in checking it out!](https://github.com/CozyHome/team_platformer--2-week-project/blob/main/WinterPlatformer/Assets/scripts/DistanceGJK.cs)
+
+## p5js Sketch Example:
+I'll get around to this tomorrow. I'm pretty tired so I apologize if you somehow find this before I've completed the page :(.
