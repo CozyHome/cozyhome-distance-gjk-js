@@ -69,3 +69,5 @@ const CONVEX_POLYGON=(pts)=>{
 	return gon;
 }
 ```
+## A Semi-Indepth Explanation of the GJK:
+I wrote an article on my CIMS page documenting the GJK's internal state. [Check it out!](https://cs.nyu.edu/~djc624/hobby/dgjk/index.html)
