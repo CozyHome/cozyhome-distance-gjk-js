@@ -8,21 +8,21 @@ Using this simplex, it is trivial to construct a nearest pair of vertices via ba
 // Example: here is how you would typically go about executing the DGJK:
 // run DGJK by passing the two point sets in. You can (optionally) pass in a prior simplex
 // from a previous frame to converge quicker for this iteration. Check dgjk.js for more details.
-		const query = DGJK(A,B);
+const query = DGJK(A,B);
 // the final simplex after termination. This will be used with 'nv' to
 // get a non-unique closest pair of points on each convex hull of the point sets.
-		const splx 	= query.splx; 	/* type: GJKSimplex2D */
+const splx = query.splx; 	/* type: GJKSimplex2D */
 // the minimized vector in A - B returned by the DGJK.
-		const nv 	= query.nv; 	/* type: vec2 */
+const nv = query.nv; 	/* type: vec2 */
 // the norm of nv is the metric (euclidean) distance between the two
 // convex sets.
-		const dist 	= norm2(nv);	/* type: Number */
+const dist = norm2(nv);	/* type: Number */
 // the pairwise tuple of (non-unique) closest vertices that contribute
 // to the minimized norm of A - B.
-		const pair 	= DGJK_CLOSEST(splx,nv); /* type: {a:vec2, b:vec2 } */
+const pair = DGJK_CLOSEST(splx,nv); /* type: {a:vec2, b:vec2 } */
 // dereferencing the two points computed in DGJK_CLOSEST:
-		const pa = pair.a; 
-		const pb = pair.b;
+const pa = pair.a; 
+const pb = pair.b;
 ```
 ## Example #2: Constructing a Compatible Polygon
 ```js
