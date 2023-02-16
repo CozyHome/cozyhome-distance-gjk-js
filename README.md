@@ -51,8 +51,8 @@ const CONVEX_POLYGON=(pts)=>{
 	centroid._x /= hull.length;
 	centroid._y /= hull.length;		
 // reconfigure polygon to be w.r.t the centroid of its 
-// vertices. This essentially allows us to apply linear transformations
-// from the viewpoint of the polygon's centroid.
+// vertices. This essentially allows us to apply linear 
+// transformations from the viewpoint of the polygon's centroid.
 	for(let i=0;i<hull.length;i++) {
 		hull[i]._x = hull[i]._x - centroid._x;
 		hull[i]._y = hull[i]._y - centroid._y;
@@ -62,7 +62,8 @@ const CONVEX_POLYGON=(pts)=>{
 // REQUIRED DEPENDENCIES FOR DGJK:
 // l2w() and l2w_iv() are REQUIRED for DGJK to function. These must
 // be part of your input polygons in order for DGJK to work!
-// check dgjk.js for implementation details you'll need to consider when attempting to use this algorithm.
+// check dgjk.js for implementation details you'll need to consider 
+// when attempting to use this algorithm.
 	gon.l2w =()=> { return gon.mat.get(); }				// local to world matrix accessor
 	gon.l2w_iv=()=> { return mInverse(gon.l2w()); }	            // world to local matrix accessor
 	gon.pts =()=> { return gon.hull; }				// point set accessor
