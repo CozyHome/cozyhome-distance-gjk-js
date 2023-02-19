@@ -10,7 +10,7 @@ Check out the cast_gjk and distance_gjk sub-directories! They are compatible wit
 
 
 Using this simplex, it is trivial to construct a nearest pair of vertices via methods like convex decomposition and barycentric coordinates. Although this pair is not necessarily continuous under rotational transformations, minimized distance is preserved. I've designed this algorithm to return as much information as possible to ensure ease of usability.
-<br>As well as this, DGJK(...) exploits frame coherency by reinserting a simplex from a prior simulation. Check the code out in the distance_gjk sub-directory for more information.
+<br><br>As well as this, DGJK(...) exploits frame coherency by reinserting a simplex from a prior simulation. Check the code out in the distance_gjk sub-directory for more information.
 
 ## Example #1: Executing Distance-GJK
 ```js
