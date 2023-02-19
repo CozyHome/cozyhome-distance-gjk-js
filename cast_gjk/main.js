@@ -29,33 +29,31 @@ const GJK_FSM=new FSM([{
 	pulse:function(fsm,man) {
 		noFill();
 		translate(width/2,height/2);
+
 		const mv = new vec2(mouseX - width/2, mouseY - height/2);
 
-		const A = man.cset[0];
-		stroke(255); DRAW_POLYGON(A, "A");
-		const B = man.cset[1];
-		stroke(0,255,120); DRAW_POLYGON(B, "B");
-		const cso = CSO_POLYGON(A,B);
-		stroke(255,255,0);
-		circle(0,0,16);
-		
+		const A = man.cset[0]; // convex set A
+		const B = man.cset[1]; // convex set B
+// difference vector to sweep A along:
 		const dv = sub2(mv, A.origin());
-		draw2p(A.origin(),dv);
-
-		DRAW_POLYGON(cso, "A - B");
-
+// run the cast function
 		const cast = CAST_DGJK(A,dv,B);
+// grab the time of impact
 		const t = cast.toi;
-
+// copy our prior matrix
 		const n_mt = A.l2w().slice();
 		if(t > 0) {
+// translate along our vector
 			n_mt[6] += t*dv._x;
 			n_mt[7] += t*dv._y;
 
-			DRAW_POLYGON(A,"A",n_mt);
-			const p = DGJK_CLOSEST(cast.query.splx,cast.query.nv,n_mt,B.l2w());
+// compute the witness point
+			const p = DGJK_CLOSEST(cast.query.splx, cast.query.nv, n_mt, B.l2w());
+// compute the witness normal
+			const n = DGJK_NORMAL(cast.query.splx,dv, A.l2w(), B.l2w());
+
 			circle(p.b.x(),p.b.y(),32);
-			const n = DGJK_NORMAL(cast.query.splx,dv,A.l2w(),B.l2w());
+			DRAW_POLYGON(A,"A",n_mt);
 			stroke(255,0,0);
 			draw2p(p.a, mul2(100,n));
 		}else {
@@ -72,6 +70,15 @@ const GJK_FSM=new FSM([{
 		if(keyIsDown(83)) man.cset[0].mat.translate(0,sp*deltaTime/1000);
 		if(keyIsDown(81)) man.cset[0].mat.rot(0.5*deltaTime/1000);
 		if(keyIsDown(69)) man.cset[0].mat.rot(-0.5*deltaTime/1000);
+
+		const cso = CSO_POLYGON(A,B);
+		DRAW_POLYGON(cso, "A - B");
+		stroke(255); DRAW_POLYGON(A, "A");
+		stroke(0,255,120); DRAW_POLYGON(B, "B");
+		stroke(255,255,0);
+		circle(0,0,16);
+
+		draw2p(A.origin(),dv);
 	}
 }]);
 
