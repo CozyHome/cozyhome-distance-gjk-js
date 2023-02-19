@@ -1,3 +1,9 @@
+// CREDITS: Daniel J. Cucuzza
+// DATE: February 16th, 2023
+// You can contact me at gaunletgames@gmail.com if you have
+// any questions about the implementation or if you notice
+// any errors.
+
 // Minkowski-Swept GJK. This essentially approximates the time of
 // impact of the intersection between two convex sets. You can think of
 // this as a generalized raycast for arbitrary (convex) shapes.
