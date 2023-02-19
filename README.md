@@ -10,15 +10,14 @@ Check out the cast_gjk and distance_gjk sub-directories! They are compatible wit
 
 
 Using this simplex, it is trivial to construct a nearest pair of vertices via methods like convex decomposition and barycentric coordinates. Although this pair is not necessarily continuous under rotational transformations, minimized distance is preserved. I've designed this algorithm to return as much information as possible to ensure ease of usability.
-<br>  
-As well as this, I am working on exploiting frame coherency by reinserting a simplex from a prior iteration. This isn't very difficult to set up but requires a dependency on the point sets being passed in, so I am hesitant to add it.
+<br>As well as this, DGJK(...) exploits frame coherency by reinserting a simplex from a prior simulation. Check the code out in the distance_gjk sub-directory for more information.
 
 ## Example #1: Executing Distance-GJK
 ```js
 // Here is how you would typically go about executing the DGJK:
-// run DGJK by passing the two point sets in. Eventually. you'll be able to pass in a prior simplex
-// from a previous frame to converge quicker for this iteration. Check dgjk.js for more details.
-const query = DGJK(A,B);
+// run DGJK by passing the two point sets in. Optionally, you are able to pass in a prior simplex
+// from a previous frame to converge quicker for the current simulation frame. Check dgjk.js out for more details.
+const query = DGJK(A,B, /*SPLX*/);
 // the final simplex after termination. This will be used with 'nv' to
 // get a non-unique closest pair of points on each convex hull of the point sets.
 const splx = query.splx; 	/* type: GJKSimplex2D */
@@ -28,8 +27,9 @@ const nv = query.nv; 	/* type: vec2 */
 // convex sets.
 const dist = norm2(nv);	/* type: Number */
 // the pairwise tuple of (non-unique) closest vertices that contribute
-// to the minimized norm of A - B.
-const pair = DGJK_CLOSEST(splx,nv); /* type: {a:vec2, b:vec2 } */
+// to the minimized norm of A - B. You'll need to pass the transformation
+// matrices of each object so the correct witness points can be computed.
+const pair = DGJK_CLOSEST(splx,nv, A.l2w(), B.l2w()); /* type: {a:vec2, b:vec2 } */
 // dereferencing the two points computed in DGJK_CLOSEST:
 const pa = pair.a; 
 const pb = pair.b;
