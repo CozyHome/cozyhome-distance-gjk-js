@@ -1,9 +1,3 @@
-// CREDITS: Daniel J. Cucuzza
-// DATE: February 16th, 2023
-// You can contact me at gaunletgames@gmail.com if you have
-// any questions about the implementation or if you notice
-// any errors.
-
 // UPDATE:I've reverted to a 3x3 implemenation strictly for
 // two dimensional usage. This will be used in the GJK implementation.
 // -DC @ 2/16/23
@@ -98,7 +92,12 @@ const Matrix3x3 = function() {
 	this.identity  = ()      => this.set(mIdentity());
 	this.translate = (x,y) => this.set(mMultiply(m(), mTranslate(x,y)));
 	this.scale     = (x,y) => this.set(mMultiply(m(), mScale(x,y)));
-	this.rotz      = theta   => this.set(mMultiply(m(), mRot(theta)));
+	this.rot      = theta   => this.set(mMultiply(m(), mRot(theta)));
+	this.getcol	   = (col)	 => {
+		col *= 3;
+		const m = this.get();
+		return [m[col],m[col+1],m[col+2]];
+	}
 	this.push = () => {
 		stack[top+1] = stack[top].slice();
 		top++;
@@ -109,6 +108,12 @@ const Matrix3x3 = function() {
 		else
 			top--;
 	}
+}
+// faster syntax for a matrix transform with vec2 type
+const MT=(m,v)=> {
+	let p=[v.x(),v.y()];
+	p = mTransform(m,p);
+	return new vec2(p[0],p[1]);
 }
 // tell P5 we want to append a matrix transformation.
 const PUSH_P5=(gm,glc=null)=> {

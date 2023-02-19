@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+    <meta charset="UTF-8">
+    <title>Iterative GJK: Raycasting</title>
+	<script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <style>
+		body {
+			background: black;
+			border: none;
+			font-family: Verdana;
+			color:white;
+		}
+		#center_view {
+			display:flex;
+			flex-direction:column;
+			justify-content:center;
+			align-items:center;
+			border: none;
+			gap:20px;
+		}
+		#center_flexbox {
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			border: 3px solid white;
+		}
+		#short {
+			width:750px;
+		}
+		hl {
+			color:yellow;
+		}
+		.hl {
+			color:yellow;
+		}
+	</style>
+	</head>
+	<body>
+    <h1>Gilbert Johnson Keerthi Distance in R^2</h1>
+		<div id="center_view">
+			<a href="https://github.com/CozyHome/cozyhome-distance-gjk-js" class="hl">Github Repository</a>
+			<iframe frameborder="0" id="sketch" src="distance_gjk/index.html" scrolling="no" width="925" height="625"></iframe>
+			<div>
+				<p id="short">
+					The Gilbert Johnson Keerthi (GJK) minimizes the separation between two convex sets. You can use this to either determine
+					if arbitrary convex polygons are intersecting, or iteratively approximate when they will intersect along a given direction.
+				</p>
+				<p id="short">
+					<hl>SKETCH CONTROLS</hl><br><br>
+					<hl>W</hl> and <hl>S</hl> to move up and down<br>
+					<hl>A</hl> and <hl>D</hl> to move left and right<br>
+					<hl>Q</hl> to rotate clockwise<br>
+					<hl>E</hl> to rotate counter-clockwise<br><br>
+					<hl>Refresh the page</hl> to generate new polygons<br><br>
+					Make sure to be in focus/click on the window to be able to move.
+				</p>
+			</div>
+			<iframe frameborder="0" id="sketch" src="cast_gjk/index.html" scrolling="no" width="925" height="625"></iframe>
+		</div>
+	</body>
+</html>

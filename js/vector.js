@@ -1,9 +1,3 @@
-// CREDITS: Daniel J. Cucuzza
-// DATE: February 16th, 2023
-// You can contact me at gaunletgames@gmail.com if you have
-// any questions about the implementation or if you notice
-// any errors.
-
 // I figured it's probably beneficial to move the 
 // vector library into a separate file going forwards
 // im going to continue keeping a glsl-type declaration 
@@ -99,6 +93,16 @@ const clamp = (t,a=0,b=1) => {
 const min=(a,b)=> {
 	return (a < b) ? a : b;
 }
+// determinant of 2x2
+const DET_2D=(v,w)=> { return v.x()*w.y() - v.y()*w.x(); }
+// sign test for edge (a,b) and point c, with sign s used
+// if you want consistent reports for unknown winding orders.
+// leave as is if you do not know what this does.
+const ORIENT_2D=(a,b,c,s=1)=> {
+	const ac   = sub2(c,a);
+	const p_ab = perp2(sub2(b,a));
+	return s*dot2(p_ab, ac) > 0;
+}
 const draw2 = (v, glc) => {								 // draws a vector in p5 graphics
 	if(glc) glc.line(0,0,v.x(),v.y());
 	else line(0,0,v.x(),v.y());
@@ -111,17 +115,20 @@ const line2 =(a,b,glc) => {								 // draws a line segment in p5 graphics
 	if(glc) glc.line(a.x(), a.y(), b.x(), b.y());
 	else line(a.x(), a.y(), b.x(), b.y());
 }
-const arrow2=(a,b,r=25,th=45,glc=null)=> {
+const arrow2=(a,b,r=15,th=45,offs=0.5,glc=null)=> {
 	const dif = mul2(r,unit2(sub2(b,a)));
 	const right = rot2(180+th,dif);
 	const left  = rot2(180-th,dif);
+	const mid = lerp2(a,b,offs);
 	if(glc) { 
 		glc.line(a.x(),a.y(),b.x(),b.y());
-		draw2p(b,right,glc); draw2p(b,left,glc);
+		draw2p(mid,right,glc);
+		draw2p(mid,left,glc);
 	}
 	else { 
 		line(a.x(),a.y(),b.x(),b.y());
-		draw2p(b,right); draw2p(b,left);
+		draw2p(mid,right);
+		draw2p(mid,left);
 	}
 }
 const plane2 = (p,n,l=512,r=25,glc) => {							 // draws a plane in p5 graphics
