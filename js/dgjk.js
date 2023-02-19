@@ -388,3 +388,67 @@ const FAST_SUPPORT=(v,set,inv)=> {
 	}
 	return mv;
 }
+
+// A Minkowski Vertex is a vertex containing the vertex
+// of convex sets A, and B and their difference. These will all
+// be used in calculating barycentric coordinates for closest
+// point computations.
+class MinkowskiVertex2D {
+	#_a; #_b; #_ab;
+	constructor(a,b,ab) {
+		this.#_a = a;
+		this.#_b = b;
+		this.#_ab = ab;
+	}
+	a=()=>this.#_a;
+	b=()=>this.#_b;
+	ab=()=>this.#_ab;
+	rebind=(ab)=>{this.#_ab = ab; }
+}
+
+// d-simplex restricted to two dimensions for the GJK algorithm. This will
+// function similar to that of a stack as the elements will be reordered.
+class GJKSimplex2D {
+	#_pts; #_dim;
+	constructor() {
+// dimensionality of simplex
+		this.#_dim = 0;
+// pseudo-stack arraylist
+		this.#_pts = [];
+	}
+// requires support points a and b
+	push=(w)=> {
+		if(this.#_dim < 3) {
+			this.#_pts.push(w);
+			this.#_dim++;
+// swap
+			for(let i=this.#_dim-1;i>0;i--) {
+				const c = this.#_pts[i];
+				const p = this.#_pts[i-1];
+				this.#_pts[i-1]=c;
+				this.#_pts[i]=p;
+			}
+		}else { return; }
+	}
+	peek=(i)=> {
+		if(i > this.#_dim) { return null; }
+		else { return this.#_pts[i]; }
+	}
+	pop=()=> {
+		if(this.#_dim > 0) { return this.#_pts[this.#_dim--]; }
+		else return null;
+	}
+	clear=()=> {
+		this.#_dim = 0;
+		while(this.#_pts.length > 0) this.#_pts.pop();
+	}
+	dim=()=> { return this.#_dim; }
+	rebind=(m_a,m_b)=> { 
+		for(let i=0;i<this.#_pts.length;i++) { 
+			this.#_pts[i].rebind(
+				sub2(MT(m_a,this.#_pts[i].a()),
+					 MT(m_b,this.#_pts[i].b())
+			));
+		}
+	}
+}

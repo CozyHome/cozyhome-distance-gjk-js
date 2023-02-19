@@ -1,3 +1,9 @@
+// CREDITS: Daniel J. Cucuzza
+// DATE: February 19th, 2023
+// You can contact me at gaunletgames@gmail.com if you have
+// any questions about the implementation or if you notice
+// any errors.
+
 let GJK_E;
 let SPLX;
 

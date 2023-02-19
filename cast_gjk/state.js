@@ -1,3 +1,9 @@
+// CREDITS: Daniel J. Cucuzza
+// DATE: February 19th, 2023
+// You can contact me at gaunletgames@gmail.com if you have
+// any questions about the implementation or if you notice
+// any errors.
+
 // constructs a default finite state entity (base class most configurations should run)
 const CONSTRUCTOR_FSE=(fsm, man, init)=> {
 	if(!man) man = CONSTRUCTOR_MAN();
