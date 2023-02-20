@@ -37,28 +37,27 @@ const pb = pair.b;
 ## Example #2: Executing Cast-GJK
 ```js
 // difference vector to sweep A along:
-		const dv = sub2(mv, A.origin());
+const dv = sub2(mv, A.origin());
 // run the cast function
-		const cast = CAST_DGJK(A,dv,B);
+const cast = CAST_DGJK(A,dv,B);
 // grab the time of impact
-		const t = cast.toi;
+const t = cast.toi;
 // copy our prior matrix
-		const n_mt = A.l2w().slice();
+const n_mt = A.l2w().slice();
 // we hit something:
-		if(t > 0) {
+if(t > 0) {
 // translate along our vector
-			n_mt[6] += t*dv._x;
-			n_mt[7] += t*dv._y;
-
+	n_mt[6] += t*dv._x;
+	n_mt[7] += t*dv._y;
 // compute the witness point
-			const p = DGJK_CLOSEST(cast.query.splx, cast.query.nv, n_mt, B.l2w());
+	const p = DGJK_CLOSEST(cast.query.splx, cast.query.nv, n_mt, B.l2w());
 // compute the witness normal
-			const n = DGJK_NORMAL(cast.query.splx,dv, A.l2w(), B.l2w());
+	const n = DGJK_NORMAL(cast.query.splx,dv, A.l2w(), B.l2w());
 // we didn't hit anything:
-		}else {
-			n_mt[6] += dv._x;
-			n_mt[7] += dv._y;
-		}
+}else {
+	n_mt[6] += dv._x;
+	n_mt[7] += dv._y;
+}
 ```
 ## Example #3: Constructing a Compatible Polygon
 ```js
