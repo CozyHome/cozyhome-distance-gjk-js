@@ -5,11 +5,14 @@
 This repository houses my implementation of the Gilbert Johnson Keerthi algorithm for convex sets in two dimensions. The output of this algorithm returns the simplex used to minimize the norm of the configuration space obstacle as well as the minimized point in configuration space. 
 <br>  
 
+## A Semi-Indepth Explanation of the GJK:
+I wrote an article on my CIMS page documenting the GJK's internal state. [Check it out!](https://cs.nyu.edu/~djc624/hobby/dgjk/index.html)
+It also provides access to the sketches involved with the p5js examples seen below:
+
 ## p5js Sketch Examples:
 Check out the cast_gjk and distance_gjk sub-directories! They are compatible with p5js and allow for some interactivity! 
 
-
-Using this simplex, it is trivial to construct a nearest pair of vertices via methods like convex decomposition and barycentric coordinates. Although this pair is not necessarily continuous under rotational transformations, minimized distance is preserved. I've designed this algorithm to return as much information as possible to ensure ease of usability.
+Using this simplex, it is trivial to construct a nearest pair of vertices via methods like convex decomposition and barycentric coordinates. Although the separation vector is not necessarily continuous under rotational transformations, minimized distance is still achieved. I've designed this algorithm to return as much information as possible to ensure ease of usability.
 <br><br>As well as this, DGJK(...) exploits frame coherency by reinserting a simplex from a prior simulation. Check the code out in the distance_gjk sub-directory for more information.
 
 ## Example #1: Executing Distance-GJK
@@ -108,8 +111,6 @@ const CONVEX_POLYGON=(pts)=>{
 	return gon;
 }
 ```
-## A Semi-Indepth Explanation of the GJK:
-I wrote an article on my CIMS page documenting the GJK's internal state. [Check it out!](https://cs.nyu.edu/~djc624/hobby/dgjk/index.html)
 
 ## Distance-GJK in Three Dimensions:
 I wrote an implementation of the DGJK for usage in the Unity engine in one of my side projects. [Click here if you're interested in checking it out!](https://github.com/CozyHome/team_platformer--2-week-project/blob/main/WinterPlatformer/Assets/scripts/DistanceGJK.cs)
