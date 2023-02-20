@@ -37,6 +37,8 @@ const pb = pair.b;
 ## Example #2: Executing Cast-GJK
 ```js
 // difference vector to sweep A along:
+// don't pay attention to what this means, it's simply a vector
+// that I am using to translate polygon A.
 const dv = sub2(mv, A.origin());
 // run the cast function
 const cast = CAST_DGJK(A,dv,B);
